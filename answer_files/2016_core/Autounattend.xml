@@ -25,6 +25,21 @@
                             <Type>Primary</Type>
                             <Extend>true</Extend>
                         </CreatePartition>
+                        <!--<CreatePartition wcm:action="add">
+                            <Type>EFI</Type> 
+                            <Size>200</Size> 
+                            <Order>1</Order> 
+                        </CreatePartition>
+                        <CreatePartition wcm:action="add">
+                            <Order>2</Order> 
+                            <Size>128</Size> 
+                            <Type>MSR</Type> 
+                        </CreatePartition>
+                        <CreatePartition wcm:action="add">
+                            <Extend>true</Extend> 
+                            <Order>3</Order> 
+                            <Type>Primary</Type> 
+                        <CreatePartition>-->
                     </CreatePartitions>
                     <ModifyPartitions>
                         <ModifyPartition wcm:action="add">
