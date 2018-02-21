@@ -29,6 +29,7 @@ Tested environments
   * VMware Fusion Pro 10.0.1
   * VirtualBox 5.1.30
   * Parallels 13.1.x or later Business or Pro
+    * Vagrant needs the Parallels driver plugin: `vagrant plugin install vagrant-parallels`
 * Windows with Vagrant 2.0.1
   * VMware Workstation Pro 14.0.0
   * (VirtualBox see issue
