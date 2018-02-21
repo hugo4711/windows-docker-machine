@@ -26,6 +26,16 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cfg.vm.box     = "windows_server_insider_docker"
     cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName insider"
   end
+
+  config.vm.define "lcow", autostart: false do |cfg|
+    cfg.vm.box     = "windows_server_1709_docker"
+    cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName lcow -enableLCOW"
+    ["vmware_fusion", "vmware_workstation"].each do |provider|
+      config.vm.provider provider do |v, override|
+        v.memory = 4096
+      end
+    end
+  end
   
   ["vmware_fusion", "vmware_workstation"].each do |provider|
     config.vm.provider provider do |v, override|
