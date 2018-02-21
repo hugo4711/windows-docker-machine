@@ -68,7 +68,7 @@ $ vagrant box add windows_server_insider_docker windows_server_insider_vmware_do
 ```
 
 Of course you can build only the box version you need. If you are using VirtualBox instead of VMware,
-swap `vmware` for `virtualbox` in the vagrant commands above.
+swap `vmware` for `virtualbox` or even `parallels` in the vagrant commands above.
 
 ## Working on macOS
 
@@ -86,6 +86,10 @@ $ vagrant up --provider vmware_fusion 2016
 - or -
 
 $ vagrant up --provider virtualbox 2016
+
+- or -
+
+$ vagrant up --provider parallels 2016
 ```
 
 ### List your new Docker machine
