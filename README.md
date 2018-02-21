@@ -1,3 +1,7 @@
+***
+**WIP**: This fork is intended to provide some Parallels Virtualization support.
+***
+
 # Windows Docker Machine
 
 This Vagrant environment creates a Docker Machine to work on your MacBook with
