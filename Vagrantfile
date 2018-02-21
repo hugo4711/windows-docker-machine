@@ -39,6 +39,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
   end
 
+  config.vm.provider "parallels" do |v, override|
+    v.memory = 2048
+    v.cpus = 2
+    v.linked_clone = true
+    v.update_guest_tools = true
+  end
+
   config.vm.provider "virtualbox" do |v, override|
     v.gui = false
     v.memory = 2048
