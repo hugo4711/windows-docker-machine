@@ -10,28 +10,33 @@ containers and the Windows containers.
 
 ![docker on mac](images/docker-on-mac.gif)
 
-## Three flavors
+## Many flavors
 
 There are three flavors or versions of Windows Server 2016. This is where you
 decide which Vagrant VM should be started.
 
 * `2016` - Windows Server 2016 (10.0.14393) LTS channel
+* `2019` - Windows Server 2019 (10.0.17639) LTS channel (insider preview)
 * `1709` - Windows Server, version 1709 (10.0.16299) Semi annual channel
+* `1803` - Windows Server, version 1803 (10.0.17134) Semi annual channel
 * `insider` - Windows Server Insider builds
 * `lcow` - Windows Server, version 1709 with LCOW enabled
 
 So with a `vagrant up 2016` you spin up the LTS version, with `vagrant up 1709`
 the 1709 version and with `vagrant up insider` the Insider build.
 
+If you don't want to run the **packer** step, you can run `vagrant up 2016-box`
+and get your box downloaded directly from [Vagrant Cloud](https://app.vagrantup.com/StefanScherer/boxes/windows_2016_docker).
+
 Tested environments
 
-* macOS with Vagrant 2.0.1
-  * VMware Fusion Pro 10.0.1
-  * VirtualBox 5.1.30
+* macOS with Vagrant 2.0.3
+  * VMware Fusion Pro 10.1.0
+  * VirtualBox 5.2.8
   * Parallels 13.1.x or later Business or Pro
     * Vagrant needs the Parallels driver plugin: `vagrant plugin install vagrant-parallels`
-* Windows with Vagrant 2.0.1
-  * VMware Workstation Pro 14.0.0
+* Windows with Vagrant 2.0.3
+  * VMware Workstation Pro 14.1.0
   * (VirtualBox see issue
     [#2](https://github.com/StefanScherer/windows-docker-machine/issues/2))
   * (Hyper-V see issue
@@ -60,13 +65,23 @@ $ vagrant box add windows_2016_docker windows_2016_docker_vmware.box
 
 - or -
 
-$ packer build --only=vmware-iso windows_server_1709_docker.json
+$ packer build --only=vmware-iso --var iso_url=~/path-to-1709.iso windows_server_1709_docker.json
 $ vagrant box add windows_server_1709_docker windows_server_1709_docker_vmware.box
 
 - or -
 
-$ packer build --only=vmware-iso windows_server_insider_docker.json
+$ packer build --only=vmware-iso --var iso_url=~/path-to-1803.iso windows_server_1803_docker.json
+$ vagrant box add windows_server_1803_docker windows_server_1803_docker_vmware.box
+
+- or -
+
+$ packer build --only=vmware-iso --var iso_url=~/path-to-insider.iso windows_server_insider_docker.json
 $ vagrant box add windows_server_insider_docker windows_server_insider_vmware_docker.box
+
+- or -
+
+$ packer build --only=vmware-iso --var iso_url=~/path-to-2019.iso windows_2019_docker.json
+$ vagrant box add windows_2019_docker windows_2019_docker_vmware.box
 ```
 
 Of course you can build only the box version you need. If you are using VirtualBox instead of VMware,
@@ -377,8 +392,8 @@ It is preconfigured to use the Windows Server, version 1709. But you can
 also use Windows Insider Server Preview as base box.
 
 ```
-dm up lcow
-dm lcow
-docker pull --platform alpine
+vagrant up lcow
+eval $(docker-machine env lcow)
+docker pull --platform linux alpine
 docker run alpine uname -a
 ```

@@ -17,9 +17,24 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName 2016"
   end
 
+  config.vm.define "2016-box" do |cfg|
+    cfg.vm.box     = "StefanScherer/windows_2016_docker"
+    cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName 2016-box"
+  end
+
   config.vm.define "1709", autostart: false do |cfg|
     cfg.vm.box     = "windows_server_1709_docker"
     cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName 1709"
+  end
+
+  config.vm.define "1803", autostart: false do |cfg|
+    cfg.vm.box     = "windows_server_1803_docker"
+    cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName 1803"
+  end
+
+  config.vm.define "2019", autostart: false do |cfg|
+    cfg.vm.box     = "windows_2019_docker"
+    cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName 2019"
   end
 
   config.vm.define "insider", autostart: false do |cfg|
@@ -32,11 +47,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     cfg.vm.provision "shell", path: "scripts/create-machine.ps1", args: "-machineHome #{home} -machineName lcow -enableLCOW"
     ["vmware_fusion", "vmware_workstation"].each do |provider|
       config.vm.provider provider do |v, override|
-        v.memory = 4096
+        v.memory = 5120
       end
     end
   end
-  
+
   ["vmware_fusion", "vmware_workstation"].each do |provider|
     config.vm.provider provider do |v, override|
       v.gui = false
