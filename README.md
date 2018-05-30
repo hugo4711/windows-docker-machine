@@ -1,5 +1,6 @@
 ***
 **WIP**: This fork is intended to provide some Parallels Virtualization support.
+**NOTE**: Currently Parallels Tools cannot be installed in Windows Server 2016 Core environments. See: https://forum.parallels.com/threads/windows-server-2016-core-install-parallels-tools.341897/ - until this is resolved, this parallels fork has no chance of working.
 ***
 
 # Windows Docker Machine
